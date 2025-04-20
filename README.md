@@ -2,8 +2,9 @@
 
 ## 1. Download Fedora for WSL
 
-- [WhitewaterFoundry/Fedora-WSL: Fedora Remix for Windows Subsystem for Linux.](https://github.com/WhitewaterFoundry/Fedora-WSL)
-- F42+ [Changes/FedoraWSL - Fedora Project Wiki](https://fedoraproject.org/wiki/Changes/FedoraWSL)
+- [WhitewaterFoundry/Fedora-Remix-for-WSL: Fedora Remix for Windows Subsystem for Linux.](https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL)
+- F42+ [Fedora in Windows Subsystem for Linux :: Fedora Docs](https://docs.fedoraproject.org/en-US/cloud/wsl/)
+  - It may only support WSL2
 
 ## 2. Prepare
 
@@ -40,5 +41,4 @@ WSL can't use these packages
 ## Information
 
 - [dnf – Manages packages with the dnf package manager — Ansible Documentation](https://docs.ansible.com/ansible/latest/modules/dnf_module.html)
-- [file – Manage files and file properties — Ansible Documentation](
-https://docs.ansible.com/ansible/latest/modules/file_module.html)
+- [file – Manage files and file properties — Ansible Documentation](https://docs.ansible.com/ansible/latest/modules/file_module.html)
