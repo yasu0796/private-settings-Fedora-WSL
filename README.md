@@ -26,8 +26,11 @@ sudo ansible-playbook -i hosts.yaml playbook-private-settings.yaml -v
 sudo /usr/sbin/sshd
 ```
 
-## Troubleshooting
+## for Windows Server 2019
 
+```pwsh
+Add-AppxPackage *.msixbundle
+```
 
 ## Limitations
 
