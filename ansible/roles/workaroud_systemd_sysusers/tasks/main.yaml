@@ -1,0 +1,32 @@
+---
+# Workaround for systemd-sysusers issue in WSL 1
+#
+# $ sudo /sbin/systemd-sysusers
+# Failed to take /etc/passwd lock: Invalid argument
+
+- name: Check current /bin/systemd-sysusers
+  become: true
+  ansible.builtin.stat:
+    path: /bin/systemd-sysusers
+    follow: false
+  register: systemd_sysusers_stat
+
+- name: Backup original systemd-sysusers when not a symlink
+  become: true
+  ansible.builtin.command:
+    cmd: mv -f /bin/systemd-sysusers /bin/systemd-sysusers.org
+  when:
+    - systemd_sysusers_stat.stat.exists | default(false)
+    - not systemd_sysusers_stat.stat.islnk | default(false)
+  register: result_cmd
+  changed_when: result_cmd.rc == 0
+
+- name: Point systemd-sysusers to echo via symlink when not a symlink
+  become: true
+  ansible.builtin.file:
+    src: /bin/echo
+    dest: /bin/systemd-sysusers
+    state: link
+    force: true
+  when:
+    - not systemd_sysusers_stat.stat.islnk | default(false)

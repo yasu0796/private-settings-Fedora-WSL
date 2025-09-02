@@ -1,0 +1,38 @@
+---
+- name: Main task
+  hosts: all
+  gather_facts: true
+  roles:
+    - role: workaroud_wslpath
+      when: "'4.4.0-17763-Microsoft' in ansible_kernel"
+
+    - role: workaroud_systemd_sysusers
+      when: "'Microsoft' in ansible_kernel"
+      tags: packages
+    - role: upgrade_packages
+      tags: packages
+    - role: install_packages_common
+      tags: packages
+    - role: install_packages_development
+      when: "ansible_processor | select('search', 'Xeon') | list | length > 0"
+      tags: packages
+    - role: workaroud_systemd_sysusers
+      when: "'Microsoft' in ansible_kernel"
+      tags: packages
+
+    - role: openssh_keypair
+      tags: openssh
+
+    - role: git_config
+      tags: git
+
+    - role: crypt_policy
+      vars:
+        crypt_policy_name: "FUTURE"
+      when: "ansible_processor | select('search', 'Xeon') | list | length == 0"
+      tags: crypt_policy
+    - role: crypt_policy
+      vars:
+        crypt_policy_name: "LEGACY"
+      when: "ansible_processor | select('search', 'Xeon') | list | length > 0"
+      tags: crypt_policy

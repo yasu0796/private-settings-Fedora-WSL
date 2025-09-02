@@ -1,0 +1,9 @@
+---
+- name: Install dnf packages for development
+  dnf:
+   name:
+    - golang
+    - ipmitool
+    - openldap-clients
+    - openssl
+    - sshpass

@@ -1,0 +1,16 @@
+---
+- name: Set git user.email
+  git_config:
+    name: user.email
+    scope: global
+    value: "{{ gitemail }}"
+  become: true
+  become_user: "{{ privateuser }}"
+
+- name: Set git user.name
+  git_config:
+    name: user.name
+    scope: global
+    value: "{{ gituser }}"
+  become: true
+  become_user: "{{ privateuser }}"

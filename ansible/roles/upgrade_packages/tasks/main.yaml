@@ -1,0 +1,5 @@
+---
+- name: Upgrade all packages
+  dnf:
+    name: "*"
+    state: latest  # noqa package-latest

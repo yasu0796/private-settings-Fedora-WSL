@@ -1,0 +1,19 @@
+---
+# Workaround for wslpath in Windows Server 2019
+#
+# wslpath: /home/user: Invalid argument
+
+- name: Ensure ~/bin exists
+  ansible.builtin.file:
+    path: "/home/{{ privateuser }}/bin"
+    state: directory
+    owner: "{{ privateuser }}"
+    group: "{{ privateuser }}"
+
+- name: Install wslpath wrapper into ~/bin
+  ansible.builtin.copy:
+    src: "files/wslpath"
+    dest: "/home/{{ privateuser }}/bin/wslpath"
+    mode: "0700"
+    owner: "{{ privateuser }}"
+    group: "{{ privateuser }}"

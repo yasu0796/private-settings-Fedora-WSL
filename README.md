@@ -17,7 +17,8 @@ git clone https://github.com/yasu0796/private-settings-Fedora-WSL.git
 
 ```bash
 cd private-settings-Fedora-WSL/ansible
-sudo ansible-playbook -i hosts.yaml playbook-private-settings.yaml -v
+sudo ansible-playbook -i hosts.yaml playbook.yaml -v --check
+sudo ansible-playbook -i hosts.yaml playbook.yaml -v
 ```
 
 ## 4. Start sshd

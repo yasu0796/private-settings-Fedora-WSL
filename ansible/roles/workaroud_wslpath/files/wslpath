@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/wslpath ${1} "${2}" 2> /dev/null

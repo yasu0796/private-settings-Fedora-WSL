@@ -1,0 +1,7 @@
+---
+- name: Find out what is the currently active policy
+  command: "update-crypto-policies --show"
+  register: crypto_policies_active
+  check_mode: false
+
+# update-policy when changeds

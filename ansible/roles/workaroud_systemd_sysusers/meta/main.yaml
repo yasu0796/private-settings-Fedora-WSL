@@ -1,0 +1,3 @@
+---
+# allowing to run this role before upgrade and after upgrade
+allow_duplicates: true
