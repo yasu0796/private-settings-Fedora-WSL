@@ -22,6 +22,9 @@
 
     - role: openssh_keypair
       tags: openssh
+    - role: authorized_key
+      when: "ansible_processor | select('search', 'Xeon') | list | length == 0"
+      tags: openssh
 
     - role: git_config
       tags: git

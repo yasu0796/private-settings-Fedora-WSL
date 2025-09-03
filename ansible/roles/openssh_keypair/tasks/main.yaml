@@ -1,18 +1,5 @@
 ---
-- name: Create ~/.ssh/keys
-  file:
-   path: "/home/{{ privateuser }}/.ssh/keys"
-   state: directory
-   recurse: true
-   owner: "{{ privateuser }}"
-   group: "{{ privateuser }}"
-   mode: '0700'
-
-- name: Set authorized key
-  authorized_key:
-   user: "{{ privateuser }}"
-   state: present
-   key: "{{ lookup('file', 'files/yasu-homepc-ed25519.pub') }}"
+# https://docs.ansible.com/ansible/latest/collections/community/crypto/openssh_keypair_module.html
 
 #   - name: Create host rsa key
 #     openssh_keypair:
