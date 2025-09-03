@@ -2,8 +2,13 @@
 - name: Install dnf packages for development
   dnf:
    name:
+    - awscli
     - golang
     - ipmitool
     - openldap-clients
     - openssl
+    - python3-octaviaclient
+    - python3-openstackclient
+    - python3-swiftclient
+    - s3cmd
     - sshpass
