@@ -31,7 +31,7 @@
 
     - role: crypt_policy
       vars:
-        crypt_policy_name: "FUTURE"
+        crypt_policy_name: "DEFAULT"
       when: "ansible_processor | select('search', 'Xeon') | list | length == 0"
       tags: crypt_policy
     - role: crypt_policy

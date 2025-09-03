@@ -6,4 +6,12 @@
   changed_when: false
   failed_when: false
 
-# update-policy when changeds
+- name: Set crypto policy when different
+  command: "update-crypto-policies --set {{ crypt_policy_name }}"
+  when:
+    - crypt_policy_name is defined
+    - crypto_policies_active is defined
+    - crypto_policies_active.stdout is defined
+    - crypto_policies_active.stdout != crypt_policy_name
+  register: result_cmd
+  changed_when: result_cmd.rc == 0
