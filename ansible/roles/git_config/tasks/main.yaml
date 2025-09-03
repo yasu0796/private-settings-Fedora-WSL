@@ -1,4 +1,10 @@
 ---
+# https://galaxy.ansible.com/ui/repo/published/community/general/content/module/git_config_info/
+
+# if you want to set user.name and user.email, you need to set these commands
+# git config --global user.name "Your Name"
+# git config --global user.email "Your Email Address"
+
 - name: Set git user.email
   git_config:
     name: user.email
