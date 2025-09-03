@@ -3,5 +3,7 @@
   command: "update-crypto-policies --show"
   register: crypto_policies_active
   check_mode: false
+  changed_when: false
+  failed_when: false
 
 # update-policy when changeds
