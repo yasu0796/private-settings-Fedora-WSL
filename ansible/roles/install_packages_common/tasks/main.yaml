@@ -11,6 +11,7 @@
     - pylint
     - python3-ansible-lint
     - python3-pip
+    - ShellCheck
     - traceroute
     - wget
     - whois
