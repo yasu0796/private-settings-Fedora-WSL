@@ -21,7 +21,17 @@ sudo ansible-playbook -i hosts.yaml playbook.yaml -v --check
 sudo ansible-playbook -i hosts.yaml playbook.yaml -v
 ```
 
-## 4. Start sshd
+## 4. Operation
+
+### Package update
+
+Due to the issue WhitewaterFoundry/Fedora-Remix-for-WSL#240, it's convenient to use the following command instead of dnf update on WSL1.
+
+```bash
+update.sh
+```
+
+### Start sshd
 
 ```bash
 sudo /usr/sbin/sshd
