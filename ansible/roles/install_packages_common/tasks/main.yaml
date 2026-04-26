@@ -13,6 +13,7 @@
     - python3-pip
     - ShellCheck
     - traceroute
+    - vim
     - wget
     - whois
     - yamllint
