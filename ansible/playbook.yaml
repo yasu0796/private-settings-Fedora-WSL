@@ -8,13 +8,13 @@
     - role: install_packages_common
       tags: packages
     - role: install_packages_development
-      when: "ansible_processor | select('search', 'Xeon') | list | length > 0"
+      when: "ansible_facts['processor'] | select('search', 'Xeon') | list | length > 0"
       tags: packages
 
     - role: openssh_keypair
       tags: openssh
     - role: authorized_key
-      when: "ansible_processor | select('search', 'Xeon') | list | length == 0"
+      when: "ansible_facts['processor'] | select('search', 'Xeon') | list | length == 0"
       tags: openssh
 
     - role: git_config
@@ -23,10 +23,10 @@
     - role: crypt_policy
       vars:
         crypt_policy_name: "DEFAULT"
-      when: "ansible_processor | select('search', 'Xeon') | list | length == 0"
+      when: "ansible_facts['processor'] | select('search', 'Xeon') | list | length == 0"
       tags: crypt_policy
     - role: crypt_policy
       vars:
         crypt_policy_name: "LEGACY"
-      when: "ansible_processor | select('search', 'Xeon') | list | length > 0"
+      when: "ansible_facts['processor'] | select('search', 'Xeon') | list | length > 0"
       tags: crypt_policy
