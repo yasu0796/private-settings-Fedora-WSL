@@ -2,6 +2,8 @@
 
 ## 1. Download Fedora for WSL
 
+Tested only Windows 11.
+
 - [WhitewaterFoundry/Fedora-Remix-for-WSL: Fedora Remix for Windows Subsystem for Linux.](https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL)
 - F42+ [Fedora in Windows Subsystem for Linux :: Fedora Docs](https://docs.fedoraproject.org/en-US/cloud/wsl/)
   - It may only support WSL2
@@ -35,12 +37,6 @@ update.sh
 
 ```bash
 sudo /usr/sbin/sshd
-```
-
-## for Windows Server 2019
-
-```pwsh
-Add-AppxPackage *.msixbundle
 ```
 
 ## Limitations

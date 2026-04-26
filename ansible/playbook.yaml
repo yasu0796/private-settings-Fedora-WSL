@@ -3,9 +3,6 @@
   hosts: all
   gather_facts: true
   roles:
-    - role: workaroud_wslpath
-      when: "'4.4.0-17763-Microsoft' in ansible_kernel"
-
     - role: upgrade_packages
       tags: packages
     - role: install_packages_common
