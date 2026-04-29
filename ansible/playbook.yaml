@@ -20,13 +20,13 @@
     - role: git_config
       tags: git
 
-    - role: crypt_policy
+    - role: crypto_policy
       vars:
-        crypt_policy_name: "DEFAULT"
+        crypto_policy_name: "DEFAULT"
       when: "ansible_facts['processor'] | select('search', 'Xeon') | list | length == 0"
-      tags: crypt_policy
-    - role: crypt_policy
+      tags: crypto_policy
+    - role: crypto_policy
       vars:
-        crypt_policy_name: "LEGACY"
+        crypto_policy_name: "LEGACY"
       when: "ansible_facts['processor'] | select('search', 'Xeon') | list | length > 0"
-      tags: crypt_policy
+      tags: crypto_policy

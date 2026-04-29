@@ -1,0 +1,17 @@
+---
+- name: Find out what is the currently active policy
+  command: "update-crypto-policies --show"
+  register: crypto_policy_active
+  check_mode: false
+  changed_when: false
+  failed_when: false
+
+- name: Set crypto policy when different
+  command: "update-crypto-policies --set {{ crypto_policy_name }}"
+  when:
+    - crypto_policy_name is defined
+    - crypto_policy_active is defined
+    - crypto_policy_active.stdout is defined
+    - crypto_policy_active.stdout != crypto_policy_name
+  register: crypto_policy_result_cmd
+  changed_when: crypto_policy_result_cmd.rc == 0
