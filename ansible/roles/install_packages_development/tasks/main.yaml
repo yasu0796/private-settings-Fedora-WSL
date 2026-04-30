@@ -7,8 +7,15 @@
     - ipmitool
     - openldap-clients
     - openssl
-    - python3-octaviaclient
-    - python3-openstackclient
+    - python3-simplejson
     - python3-swiftclient
+    - python3-neutronclient
     - s3cmd
     - sshpass
+
+- name: Install pip packages for development
+  pip:
+   name:
+    - python-cinderclient==7.4.1    # support cinder v2 API
+    - python-octaviaclient<3.9.0    # similar to Fedora 44 version
+    - python-openstackclient<8.0.0  # similar to Fedora 44 version
