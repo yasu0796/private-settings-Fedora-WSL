@@ -1,0 +1,3 @@
+---
+- name: Update the CA trust list
+  command: update-ca-trust extract

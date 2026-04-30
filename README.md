@@ -15,6 +15,10 @@ sudo dnf install git ansible
 git clone https://github.com/yasu0796/private-settings-Fedora-WSL.git
 ```
 
+### 2.1 Cloudflare
+
+Copy `certificate.pem` in `ansible/roles/cloudflare/files` directory.
+
 ## 3. Run
 
 ```bash

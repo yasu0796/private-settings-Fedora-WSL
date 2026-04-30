@@ -1,2 +1,45 @@
 ---
+- name: Check if the certificate file exists locally
+  delegate_to: localhost
+  become: false
+  stat:
+    path: "{{ role_path }}/files/certificate.pem"
+  register: cloudflare_local_cert
 
+- name: Copy the certificate to the trusted anchors directory
+  copy:
+    src: certificate.pem
+    dest: /etc/pki/ca-trust/source/anchors/certificate.crt
+    owner: root
+    group: root
+    mode: '0644'
+  when: cloudflare_local_cert.stat.exists
+  notify: Update the CA trust list
+
+- name: Set the NODE_EXTRA_CA_CERTS environment variable persistently
+  lineinfile:
+    path: /etc/environment
+    regexp: '^NODE_EXTRA_CA_CERTS='
+    line: 'NODE_EXTRA_CA_CERTS=/etc/pki/ca-trust/source/anchors/certificate.crt'
+    state: present
+  when: cloudflare_local_cert.stat.exists
+
+- name: Get the CA path for certifi
+  command: python3 -m certifi
+  register: cloudflare_certifi_path_raw
+  check_mode: false
+  changed_when: false
+
+- name: Format the path as a variable
+  set_fact:
+    cloudflare_certifi_bundle_path: "{{ cloudflare_certifi_path_raw.stdout | trim }}"
+
+- name: Append the certificate to certifi's CA bundle
+  ansible.builtin.shell: |
+    if ! grep -qFf /etc/pki/ca-trust/source/anchors/certificate.crt "{{ cloudflare_certifi_bundle_path }}"; then
+      cat /etc/pki/ca-trust/source/anchors/certificate.crt >> "{{ cloudflare_certifi_bundle_path }}"
+      echo "added"
+    fi
+  register: cloudflare_certifi_append
+  changed_when: "'added' in cloudflare_certifi_append.stdout"
+  when: cloudflare_local_cert.stat.exists
