@@ -5,6 +5,7 @@
   roles:
     - role: upgrade_packages
       tags: packages
+      when: ansible_facts['env']['WSL_DISTRO_NAME'] | default('') != "fedoraremix"
     - role: install_packages_common
       tags: packages
     - role: install_packages_development
